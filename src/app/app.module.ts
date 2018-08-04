@@ -10,7 +10,13 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { FooterComponent } from './footer/footer.component';
 import { CatagoryComponent } from './catagory/catagory.component';
 import { HomeComponent } from './home/home.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import {RouterModule, Routes} from '@angular/router';
 
+const routeConfig: Routes = [
+  {path: '', component: HomeComponent },
+  {path: 'product/:productId', component: ProductDetailComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,10 +26,12 @@ import { HomeComponent } from './home/home.component';
     ProductListComponent,
     FooterComponent,
     CatagoryComponent,
-    HomeComponent
+    HomeComponent,
+    ProductDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routeConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
