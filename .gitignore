@@ -40,3 +40,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#Some vulnerabilities in its and it can not be fixed.
+package-lock.json
+package.json
