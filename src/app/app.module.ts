@@ -12,6 +12,9 @@ import { CatagoryComponent } from './catagory/catagory.component';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {RouterModule, Routes} from '@angular/router';
+import {CategoryService} from './shared/category.service';
+import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 const routeConfig: Routes = [
   {path: '', component: HomeComponent },
@@ -31,9 +34,13 @@ const routeConfig: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(routeConfig)
   ],
-  providers: [],
+  providers: [
+    CategoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
