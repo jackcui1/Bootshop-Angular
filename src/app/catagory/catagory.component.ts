@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Category} from '../shared/category';
+import {Category} from '../shared/model/category';
 import {Observable} from 'rxjs/Observable';
-import {CategoryService} from '../shared/category.service';
+import {CategoryService} from '../shared/service/category.service';
 
 @Component({
   selector: 'app-catagory',
@@ -15,7 +15,6 @@ export class CatagoryComponent implements OnInit {
 
   ngOnInit() {
     this.categories = this.categoryService.getCategoryList();
-    this.categories.subscribe( res => console.log(res));
   }
 
 }

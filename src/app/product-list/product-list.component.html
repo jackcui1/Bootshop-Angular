@@ -1,13 +1,16 @@
 <div class="row">
   <h4 class="px-3" >Product List</h4>
 </div>
+
 <div class="row">
-  <div *ngFor="let product of products" class="col-md-4 col-sm-4 col-lg-4">
+  <div *ngFor="let product of products |async" class="col-md-4 col-sm-4 col-lg-4">
     <div class="card mb-4 shadow-sm text-center">
       <div class="card-body">
-        <a  [routerLink]="['/product',product.id]"><img src="http://via.placeholder.com/160x160" alt=""/></a>
+
+        <a  [routerLink]="['/product',product.id]"><img src="{{product.absolutImagename}}" appImageResizing
+                                                        imageHeight="160" imageWidth="160" alt=""/></a>
         <h4 class="my-1 card-title pricing-card-title">${{product.price}}</h4>
-        <h4 class="my-0 font-weight-normal">{{product.title}}</h4>
+        <h4 class="my-0 font-weight-normal">{{product.name}}</h4>
         <p>
           {{product.desc}}
         </p>

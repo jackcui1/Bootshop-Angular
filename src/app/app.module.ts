@@ -12,9 +12,11 @@ import { CatagoryComponent } from './catagory/catagory.component';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {RouterModule, Routes} from '@angular/router';
-import {CategoryService} from './shared/category.service';
+import {CategoryService} from './shared/service/category.service';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
+import {ProductService} from './shared/service/product-service';
+import { ImageResizingDirective } from './shared/image-resizing.directive';
 
 const routeConfig: Routes = [
   {path: '', component: HomeComponent },
@@ -30,7 +32,8 @@ const routeConfig: Routes = [
     FooterComponent,
     CatagoryComponent,
     HomeComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ImageResizingDirective
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ const routeConfig: Routes = [
     RouterModule.forRoot(routeConfig)
   ],
   providers: [
-    CategoryService
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
