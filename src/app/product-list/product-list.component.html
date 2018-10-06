@@ -7,8 +7,7 @@
     <div class="card mb-4 shadow-sm text-center">
       <div class="card-body">
 
-        <a  [routerLink]="['/product',product.id]"><img src="{{product.absolutImagename}}" appImageResizing
-                                                        imageHeight="160" imageWidth="160" alt=""/></a>
+        <a   [routerLink]="['/product',product.productid]" class="align-items-lg-center"><img class="img-responsive center-block" src="{{product.absolutImagename}}" appImageResizing imageHeight="160" imageWidth="160" alt=""/></a>
         <h4 class="my-1 card-title pricing-card-title">${{product.price}}</h4>
         <h4 class="my-0 font-weight-normal">{{product.name}}</h4>
         <p>

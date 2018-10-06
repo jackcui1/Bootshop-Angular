@@ -9,20 +9,21 @@ export class ImageResizingDirective {
   @Input() imageHeight: number;
 
   constructor(private element: ElementRef) {
+    console.log('constructor: ' + this.element.nativeElement.height);
   }
 
   public imageResizing() {
-   /* console.log(this.imageHeight + ' : ' + this.imageWidth);
-    console.log('native image height: ' + this.el.nativeElement.height);*/
-    if (this.element.nativeElement.height > this.element.nativeElement.width) {
+    if (this.element.nativeElement.height > this.element.nativeElement.width ) {
       this.element.nativeElement.height = this.imageHeight;
     } else {
       this.element.nativeElement.width = this.imageWidth;
     }
-
   }
 
-  ngAfterViewInit() {
+  @HostListener('load')
+  onLoad() {
+
+    console.log('height after loading: ' + this.element.nativeElement.height);
     this.imageResizing();
   }
 }

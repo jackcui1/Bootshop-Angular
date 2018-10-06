@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -16,7 +15,8 @@ import {CategoryService} from './shared/service/category.service';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {ProductService} from './shared/service/product-service';
-import { ImageResizingDirective } from './shared/image-resizing.directive';
+import {ImageResizingDirective } from './shared/image-resizing.directive';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 const routeConfig: Routes = [
   {path: '', component: HomeComponent },
@@ -42,6 +42,7 @@ const routeConfig: Routes = [
     RouterModule.forRoot(routeConfig)
   ],
   providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     CategoryService,
     ProductService
   ],
