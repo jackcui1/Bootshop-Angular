@@ -16,17 +16,21 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
-              private router: Router
-  ) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
+
+    this.subCategoryId = this.route.snapshot.params['id'];
+    console.log('this.subCategoryId: ' + this.subCategoryId);
+    if (this.subCategoryId === undefined) {
       this.products = this.productService.getProductList();
-      this.subCategoryId = this.route.snapshot.params['id'];
-      console.log('this.subCategoryId: ' + this.subCategoryId);
+    } else {
       this.route.params.subscribe((params: Params) => {
         console.log(params['id']);
         this.products = this.productService.getProductsBySubCategory(params['id']);
       });
+    }
   }
 }
 
