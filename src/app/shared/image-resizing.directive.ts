@@ -9,7 +9,6 @@ export class ImageResizingDirective {
   @Input() imageHeight: number;
 
   constructor(private element: ElementRef) {
-    console.log('constructor: ' + this.element.nativeElement.height);
   }
 
   public imageResizing() {
@@ -20,10 +19,7 @@ export class ImageResizingDirective {
     }
   }
 
-  @HostListener('load')
-  onLoad() {
-
-    console.log('height after loading: ' + this.element.nativeElement.height);
+  @HostListener('load') onLoad() {
     this.imageResizing();
   }
 }

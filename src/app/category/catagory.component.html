@@ -5,7 +5,7 @@
     <li class="nav-item" *ngFor="let category of categories | async">
       <button class="btn btn-light  btn-block dropdown-toggle text-left" href="#" data-toggle="collapse" data-target="#subNavFirst" aria-expanded="true">{{category.name}}</button>
       <ul class="collapse list-unstyled show ml-3 my-2" id="subNavFirst" data-parent="#sideManu" *ngFor="let subCategory of category.subCategories">
-        <li><i class="fa fa-angle-right"></i><a class="text-dark ml-1" href="products.html">{{subCategory.name}} </a></li>
+        <li><i class="fa fa-angle-right"></i><a class="text-dark ml-1" [routerLink]="['/products',subCategory.id]"> {{subCategory.name}}</a></li>
       </ul>
     </li>
   </ul>
