@@ -17,11 +17,17 @@ import {HttpClientModule} from '@angular/common/http';
 import {ProductService} from './shared/service/product-service';
 import {ImageResizingDirective } from './shared/image-resizing.directive';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { ContactComponent } from './contact/contact.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ContactService} from './shared/service/contact.service';
+import { AlertComponent } from './alert/alert.component';
+import {AlertService} from './shared/service/alert.service';
 
 const routeConfig: Routes = [
   {path: '', component: HomeComponent },
   {path: 'product/:productId', component: ProductDetailComponent},
-  {path: 'products/:id', component: ProductListComponent}
+  {path: 'products/:id', component: ProductListComponent},
+  {path: 'contact', component: ContactComponent}
 ]
 @NgModule({
   declarations: [
@@ -34,18 +40,24 @@ const routeConfig: Routes = [
     CatagoryComponent,
     HomeComponent,
     ProductDetailComponent,
-    ImageResizingDirective
+    ImageResizingDirective,
+    ContactComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     HttpClientModule,
-    RouterModule.forRoot(routeConfig)
+    RouterModule.forRoot(routeConfig),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     CategoryService,
-    ProductService
+    ProductService,
+    ContactService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

@@ -19,8 +19,6 @@ export class ProductService {
 
   getProductsBySubCategory(id: number): Observable<Product[]> {
     return this.http.get('/rest/products/subcategories/' + id);
-      // .toPromise()
-      // .then(response => response as Product[]);
   }
 }
 

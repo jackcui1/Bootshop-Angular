@@ -1,6 +1,6 @@
 .right-nav .nav{
-  float: right;
-}
+    float: right;
+  }
 .right-tabs .nav li { float: left }
 .right-tabs .tab-content {
   float: left;
