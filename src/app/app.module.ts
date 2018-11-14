@@ -20,8 +20,10 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { ContactComponent } from './contact/contact.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ContactService} from './shared/service/contact.service';
-import { AlertComponent } from './alert/alert.component';
+import {AlertComponent} from './alert/alert.component';
 import {AlertService} from './shared/service/alert.service';
+import {CustomValidateService} from './shared/service/custom-validate.service';
+import { DeliveryComponent } from './delivery/delivery.component';
 
 const routeConfig: Routes = [
   {path: '', component: HomeComponent },
@@ -42,7 +44,8 @@ const routeConfig: Routes = [
     ProductDetailComponent,
     ImageResizingDirective,
     ContactComponent,
-    AlertComponent
+    AlertComponent,
+    DeliveryComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ const routeConfig: Routes = [
     CategoryService,
     ProductService,
     ContactService,
-    AlertService
+    AlertService,
+    CustomValidateService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,9 @@
+#addr{
+  padding-left: 12px;
+}
+.text-muted {
+  background-color: DeepSkyBlue;
+}
+input.ng-invalid.ng-touched{
+  border-color:#dc3545
+}

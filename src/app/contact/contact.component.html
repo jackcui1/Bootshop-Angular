@@ -1,0 +1,58 @@
+<div class="container">
+<div class="row">
+    <p class="h4">Contact us: </p>
+
+  <dl class="row" id="addr">
+    <dt class="col-sm-12">Address: </dt>
+    <dd class="col-sm-12">{{contact?.article.title}}</dd>
+
+    <dt class="col-sm-12">Post code: </dt>
+    <dd class="col-sm-12">{{contact?.article.body}}</dd>
+
+    <dt class="col-sm-12">Telephone: </dt>
+    <dd class="col-sm-12">{{contact?.article.desc}}</dd>
+  </dl>
+</div>
+<div class="row">
+    <form class="col-12" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="inputFirstName">First Name* <span class="text-muted" *ngIf="!contactForm.controls['firstname'].valid && contactForm.controls['firstname']?.touched"> Please enter a valid first name</span></label>
+      <input formControlName="firstname" class="form-control form-control-lg" id="inputFirstName" aria-describedby="firstnameHelp"
+             placeholder="Enter first name" required>
+
+    </div>
+
+    <div class="form-group">
+      <label for="inputLastName">Last Name*</label>
+      <p><span class="text-muted" *ngIf="!contactForm.controls['lastname'].valid && contactForm.controls['lastname']?.touched"> Please enter a valid last name</span></p>
+      <input formControlName="lastname" class="form-control form-control-lg" id="inputLastName" aria-describedby="lastnameHelp"
+             placeholder="Enter last name">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address*</label>
+        <!--<span class="text-muted" *ngIf="!contactForm.controls['email'].valid && contactForm.controls['email']?.touched"> Please enter a valid email address</span>-->
+      <!--<span class="text-muted" [hidden]="!contactForm.hasError('emailTaken', 'email')">
+        Email address is duplicate.
+      </span>-->
+
+      <input formControlName="email" type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp"
+             placeholder="Enter email">
+      <!--<div *ngIf="email.errors.emailTaken">Email existed.</div>-->
+    </div>
+    <div class="form-group">
+      <label for="InputMessage">Message</label>
+      <textarea formControlName="message" class="form-control" id="InputMessage" rows="4"  placeholder="Enter message"></textarea>
+    </div>
+      <app-alert></app-alert>
+    <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid" >Submit</button>
+  </form>
+  <div>
+    {{contactForm.status}}
+    {{contactForm.hasError('emailTaken','email')}}
+  </div>
+
+
+</div>
+</div>
+
