@@ -2,12 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validator, Validators} from '@angular/forms';
 import {ContactService} from '../shared/service/contact.service';
 import {Contact} from '../shared/model/contact';
-import {emailTaken, emailTaken3, existEmail, phoneNumberValidator} from '../shared/validators/validators';
+import {CannotContainSpace, incorrectMailFormat} from '../shared/validators/validators';
 import {Router} from '@angular/router';
 import {AlertService} from '../shared/service/alert.service';
-import {CustomValidators} from '../shared/validators/customvalidate';
 import 'rxjs/add/operator/map';
-import {CustomValidateService} from '../shared/service/custom-validate.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -27,13 +25,12 @@ export class ContactComponent implements OnInit {
 
   constructor(private contactService: ContactService,
               private router: Router,
-              private alertService: AlertService,
-              private customValidateService: CustomValidateService) {
+              private alertService: AlertService) {
     let fb = new FormBuilder();
     this.contactForm = fb.group({
-      firstname: ['', Validators.required],
-      lastname: [''],
-      email: ['', phoneNumberValidator],
+      firstname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
+      lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
+      email: ['', [Validators.required, incorrectMailFormat, CannotContainSpace ]],
       message: ['']
     });
   }
@@ -54,8 +51,9 @@ export class ContactComponent implements OnInit {
         contact => {
           newContact2 = contact;
         });
+      this.alertService.success('Submit successfully, we will contact you soon!');
       this.contactForm.reset();
-      this.alertService.success('Submit successful, we will contact you soon!');
+      this.contactForm.clearValidators();
       console.log(newContact2);
     }
   }

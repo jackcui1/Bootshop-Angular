@@ -22,14 +22,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ContactService} from './shared/service/contact.service';
 import {AlertComponent} from './alert/alert.component';
 import {AlertService} from './shared/service/alert.service';
-import {CustomValidateService} from './shared/service/custom-validate.service';
 import { DeliveryComponent } from './delivery/delivery.component';
+import {ArticleService} from './shared/service/article.service';
+import { BigImageResizingDirective } from './shared/directive/big-image-resizing.directive';
 
 const routeConfig: Routes = [
   {path: '', component: HomeComponent },
   {path: 'product/:productId', component: ProductDetailComponent},
   {path: 'products/:id', component: ProductListComponent},
-  {path: 'contact', component: ContactComponent}
+  {path: 'contact', component: ContactComponent},
+  {path: 'delivery', component: DeliveryComponent}
 ]
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ const routeConfig: Routes = [
     ImageResizingDirective,
     ContactComponent,
     AlertComponent,
-    DeliveryComponent
+    DeliveryComponent,
+    BigImageResizingDirective
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,7 @@ const routeConfig: Routes = [
     ProductService,
     ContactService,
     AlertService,
-    CustomValidateService
+    ArticleService
   ],
   bootstrap: [AppComponent]
 })

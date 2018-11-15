@@ -14,19 +14,27 @@
   </dl>
 </div>
 <div class="row">
-    <form class="col-12" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <form id="contactForm" class="col-12" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="inputFirstName">First Name* <span class="text-muted" *ngIf="!contactForm.controls['firstname'].valid && contactForm.controls['firstname']?.touched"> Please enter a valid first name</span></label>
+      <label for="inputFirstName">First Name* </label>
       <input formControlName="firstname" class="form-control form-control-lg" id="inputFirstName" aria-describedby="firstnameHelp"
-             placeholder="Enter first name" required>
+             placeholder="Enter first name">
+      <div class="alert alert-danger" *ngIf="contactForm.get('firstname').errors && contactForm.controls['firstname']?.touched">
+        <div *ngIf="contactForm.get('firstname').errors.required">First name is Required.</div>
+        <div *ngIf="contactForm.get('firstname').errors.minlength || contactForm.get('firstname').errors.maxlength">First name must be between 3 and 16 characters.</div>
+      </div>
 
     </div>
 
     <div class="form-group">
       <label for="inputLastName">Last Name*</label>
-      <p><span class="text-muted" *ngIf="!contactForm.controls['lastname'].valid && contactForm.controls['lastname']?.touched"> Please enter a valid last name</span></p>
+     <!-- <p><span class="text-muted" *ngIf="!contactForm.controls['lastname'].valid && contactForm.controls['lastname']?.touched"> Please enter a valid last name</span></p>-->
       <input formControlName="lastname" class="form-control form-control-lg" id="inputLastName" aria-describedby="lastnameHelp"
              placeholder="Enter last name">
+      <div class="alert alert-danger" *ngIf="contactForm.get('lastname').errors && contactForm.controls['lastname']?.touched">
+        <div *ngIf="contactForm.get('lastname').errors.required">Last name is Required.</div>
+        <div *ngIf="contactForm.get('lastname').errors.minlength || contactForm.get('lastname').errors.maxlength">Last name must be between 3 and 16 characters.</div>
+      </div>
     </div>
 
     <div class="form-group">
@@ -38,7 +46,12 @@
 
       <input formControlName="email" type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp"
              placeholder="Enter email">
-      <!--<div *ngIf="email.errors.emailTaken">Email existed.</div>-->
+      <div class="alert alert-danger" *ngIf="contactForm.get('email').errors && contactForm.controls['email']?.touched">
+        <div *ngIf="contactForm.get('email').errors.required">Email is Required.</div>
+        <div *ngIf="contactForm.get('email').errors.CannotContainSpace">Email cannot contain space.</div>
+        <div *ngIf="contactForm.get('email').errors.incorrectMailFormat">Incorrect Email Format.</div>
+      </div>
+
     </div>
     <div class="form-group">
       <label for="InputMessage">Message</label>
@@ -47,10 +60,6 @@
       <app-alert></app-alert>
     <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid" >Submit</button>
   </form>
-  <div>
-    {{contactForm.status}}
-    {{contactForm.hasError('emailTaken','email')}}
-  </div>
 
 
 </div>

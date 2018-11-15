@@ -5,14 +5,8 @@
     <li data-target="#carouselCtrl" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner  ">
-    <div class="carousel-item active align-content-center">
-      <img class="slide-image" src="http://via.placeholder.com/800x300" alt="">
-    </div>
-    <div class="carousel-item">
-      <img class="slide-image" src="http://via.placeholder.com/800x300" alt="">
-    </div>
-    <div class="carousel-item">
-      <img class="slide-image" src="http://via.placeholder.com/800x300" alt="">
+    <div class="carousel-item align-content-center" *ngFor="let article of articles |async; let index = index" [class.active]="index == 0">
+      <img class="slide-image" src="{{article.absolutImagename}}" alt="" appBigImageResizing imageHeight="328" imageWidth="800" >
     </div>
 
   </div>
